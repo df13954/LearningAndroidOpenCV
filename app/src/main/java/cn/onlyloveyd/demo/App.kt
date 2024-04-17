@@ -3,6 +3,8 @@ package cn.onlyloveyd.demo
 import android.app.Application
 import cn.onlyloveyd.demo.ext.MMKVKey
 import cn.onlyloveyd.demo.ext.copyFromAssets
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.Utils.init
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,6 +32,10 @@ class App : Application() {
         println("mmkv root: $rootDir")
         initWeChatModelFile()
         SmartCropper.buildImageDetector(this)
+        LogUtils.getConfig()
+            .setConsoleSwitch(true)
+            .setBorderSwitch(true)
+            .setLogHeadSwitch(true)
     }
 
     /**

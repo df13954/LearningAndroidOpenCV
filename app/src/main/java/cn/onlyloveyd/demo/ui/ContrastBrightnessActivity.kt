@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import cn.onlyloveyd.demo.R
 import cn.onlyloveyd.demo.databinding.ActivityContrastBrightnessBinding
+import com.blankj.utilcode.util.ImageUtils
 import org.opencv.android.Utils
 import org.opencv.core.Core
 import org.opencv.core.Mat
@@ -38,7 +39,7 @@ class ContrastBrightnessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_contrast_brightness)
-        val bgr = Utils.loadResource(this, R.drawable.lena)
+        val bgr = Utils.loadResource(this, R.drawable.bi)
 
         source = Mat()
         Imgproc.cvtColor(bgr, source, Imgproc.COLOR_BGR2RGB)
@@ -71,8 +72,13 @@ class ContrastBrightnessActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
             }
         })
-    }
 
+        mBinding.btnSave.setOnClickListener {
+            // 保存图片到本地
+            ImageUtils.save2Album(bitmapDist, Bitmap.CompressFormat.PNG)
+        }
+    }
+    var bitmapDist: Bitmap? = null
     private fun adjustBrightnessContrast() {
         val pre = Mat()
         Core.add(
@@ -95,9 +101,10 @@ class ContrastBrightnessActivity : AppCompatActivity() {
             ),
             dst
         )
-        val bitmap = Bitmap.createBitmap(dst.cols(), dst.rows(), Bitmap.Config.ARGB_8888)
-        Utils.matToBitmap(dst, bitmap)
-        mBinding.ivSource.setImageBitmap(bitmap)
+        bitmapDist = Bitmap.createBitmap(dst.cols(), dst.rows(), Bitmap.Config.ARGB_8888)
+        Utils.matToBitmap(dst, bitmapDist)
+        mBinding.ivSource.setImageBitmap(bitmapDist)
+
         pre.release()
         dst.release()
     }

@@ -29,12 +29,12 @@ import org.opencv.features2d.ORB
 class ORBBFMatchActivity : AppCompatActivity() {
 
     private val firstBgr by lazy {
-        Utils.loadResource(this, R.drawable.lena)
+        Utils.loadResource(this, R.drawable.test02)
     }
     private val firstGray by lazy { firstBgr.toGray() }
 
     private val secondBgr by lazy {
-        Utils.loadResource(this, R.drawable.lena_250)
+        Utils.loadResource(this, R.drawable.test_tmp)
     }
     private val secondGray by lazy { secondBgr.toGray() }
 

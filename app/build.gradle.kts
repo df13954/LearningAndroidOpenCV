@@ -61,6 +61,8 @@ dependencies {
 
     //    implementation(project(path = ":sdk450"))
     implementation(project(path = ":sdk452"))
+    implementation("com.blankj:utilcodex:1.30.1")
+    implementation("com.github.getActivity:XXPermissions:18.63")
 
     Dependencies.Kotlin.run {
         implementation(kotlinStdLib)

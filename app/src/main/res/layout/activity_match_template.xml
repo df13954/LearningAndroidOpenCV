@@ -17,25 +17,72 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_percent="0.2" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/guideline" />
 
         <ImageView
             android:id="@+id/iv_lena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@id/guideline"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="120dp"
+            android:id="@+id/iv_result"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/guideline" />
 
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_tm_sqdiff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tm_sqdiff" />
+
+            <RadioButton
+                android:id="@+id/rb_tm_sqdiff_normed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tm_sqdiff_normed" />
+
+            <RadioButton
+                android:id="@+id/rb_tm_ccoeff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tm_ccoeff" />
+
+            <RadioButton
+                android:id="@+id/rb_tm_ccoeff_normed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tm_ccoeff_normed" />
+
+            <RadioButton
+                android:id="@+id/rb_tm_ccorr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tm_ccorr" />
+
+            <RadioButton
+                android:id="@+id/rb_tm_ccorr_normed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tm_ccorr_normed" />
+        </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

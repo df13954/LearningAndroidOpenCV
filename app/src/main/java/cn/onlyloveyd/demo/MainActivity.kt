@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import cn.onlyloveyd.demo.ui.*
+import com.hjq.permissions.OnPermissionCallback
+import com.hjq.permissions.Permission
+import com.hjq.permissions.XXPermissions
 
 class MainActivity : ListActivity() {
 
@@ -17,6 +20,24 @@ class MainActivity : ListActivity() {
             android.R.layout.simple_list_item_1, arrayOf("title"),
             intArrayOf(android.R.id.text1)
         )
+        XXPermissions.with(this)
+            // 申请单个权限
+            .permission(Permission.READ_EXTERNAL_STORAGE)
+            // 申请多个权限
+            .permission(Permission.WRITE_EXTERNAL_STORAGE)
+            // 设置权限请求拦截器（局部设置）
+            //.interceptor(new PermissionInterceptor())
+            // 设置不触发错误检测机制（局部设置）
+            //.unchecked()
+            .request(object : OnPermissionCallback {
+
+                override fun onGranted(permissions: MutableList<String>, allGranted: Boolean) {
+
+                }
+
+                override fun onDenied(permissions: MutableList<String>, doNotAskAgain: Boolean) {
+                }
+            })
     }
 
     private fun getData(): List<Map<String, Any>> {
@@ -57,6 +78,33 @@ class MainActivity : ListActivity() {
             mapOf(
                 "title" to "颜色模型转换",
                 "intent" to activityToIntent(ColorTransferActivity::class.java.name)
+            )
+        )
+        myData.add(
+            mapOf(
+                "title" to "ORB特征点检测",
+                "intent" to activityToIntent(ORBActivity::class.java.name)
+            )
+        )
+
+        myData.add(
+            mapOf(
+                "title" to "ORB特征点暴力匹配",
+                "intent" to activityToIntent(ORBBFMatchActivity::class.java.name)
+            )
+        )
+
+        myData.add(
+            mapOf(
+                "title" to "ORB特征点FLANN匹配",
+                "intent" to activityToIntent(ORBFLANNMatchActivity::class.java.name)
+            )
+        )
+
+        myData.add(
+            mapOf(
+                "title" to "模板匹配",
+                "intent" to activityToIntent(MatchTemplateActivity::class.java.name)
             )
         )
 
@@ -274,12 +322,7 @@ class MainActivity : ListActivity() {
                 "intent" to activityToIntent(ConvexHullActivity::class.java.name)
             )
         )
-        myData.add(
-            mapOf(
-                "title" to "模板匹配",
-                "intent" to activityToIntent(MatchTemplateActivity::class.java.name)
-            )
-        )
+
         myData.add(
             mapOf(
                 "title" to "QR二维码检测",
@@ -371,26 +414,7 @@ class MainActivity : ListActivity() {
             )
         )
 
-        myData.add(
-            mapOf(
-                "title" to "ORB特征点检测",
-                "intent" to activityToIntent(ORBActivity::class.java.name)
-            )
-        )
 
-        myData.add(
-            mapOf(
-                "title" to "ORB特征点暴力匹配",
-                "intent" to activityToIntent(ORBBFMatchActivity::class.java.name)
-            )
-        )
-
-        myData.add(
-            mapOf(
-                "title" to "ORB特征点FLANN匹配",
-                "intent" to activityToIntent(ORBFLANNMatchActivity::class.java.name)
-            )
-        )
 
         myData.add(
             mapOf(
